@@ -1,6 +1,7 @@
 name: Builds
 on:
   pull_request:
+    branches: master
   push:
   schedule:
     - cron: '0 0 * * *'
