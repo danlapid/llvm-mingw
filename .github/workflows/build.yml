@@ -1,10 +1,5 @@
 name: Builds
-on:
-  pull_request:
-    branches: master
-  push:
-  schedule:
-    - cron: '0 0 * * *'
+on: [pull_request, push]
 
 jobs:
   # For scheduled builds, get the commit ids of the latest versions to build.
