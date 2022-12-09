@@ -109,7 +109,7 @@ jobs:
 
   # Build a cross compiler for macOS, targeting Windows.
   macos:
-    if: (github.event_name != 'schedule') || (github.repository == 'mstorsjo/llvm-mingw')
+    if: (github.event_name != 'schedule') && (github.repository == 'mstorsjo/llvm-mingw')
     needs: [get-versions]
     runs-on: macos-latest
     steps:
@@ -149,7 +149,7 @@ jobs:
   # the host environment (libstdc++ or libc++). No artifacts are stored from
   # these builds, but llvm-mingw's tests are run.
   msys2:
-    if: (github.event_name != 'schedule') || (github.repository == 'mstorsjo/llvm-mingw')
+    if: (github.event_name != 'schedule') && (github.repository == 'mstorsjo/llvm-mingw')
     needs: [get-versions]
     runs-on: windows-latest
     defaults:
