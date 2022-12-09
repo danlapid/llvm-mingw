@@ -5,6 +5,21 @@ on:
     - cron: '0 0 * * *'
 
 jobs:
+  release:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Create release
+      run: |
+        ./release.sh release
+    - uses: actions/upload-artifact@v3
+      with:
+        name: artifacts
+        path: |
+          llvm-mingw-release-msvcrt-ubuntu-18.04-x86_64.tar.xz
+          llvm-mingw-release-msvcrt-i686.zip
+          llvm-mingw-release-msvcrt-x86_64.zip
+        retention-days: 7
+
   # For scheduled builds, get the commit ids of the latest versions to build.
   #
   # Doing this as one single job, which then propagates the information further
@@ -242,7 +257,7 @@ jobs:
   # Run llvm-mingw's tests on x86_64 (and i686) with the cross-built x86_64
   # toolchain from above.
   test-toolchain:
-    if: (github.event_name != 'schedule') 
+    if: (github.event_name != 'schedule')
     needs: [linux-cross]
     runs-on: windows-latest
     defaults:
