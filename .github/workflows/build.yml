@@ -6,19 +6,19 @@ on:
 
 jobs:
   release:
-  runs-on: ubuntu-latest
-  steps:
-    - name: Create release
-      run: |
-        ./release.sh release
-    - uses: actions/upload-artifact@v3
-      with:
-        name: artifacts
-        path: |
-          llvm-mingw-release-msvcrt-ubuntu-18.04-x86_64.tar.xz
-          llvm-mingw-release-msvcrt-i686.zip
-          llvm-mingw-release-msvcrt-x86_64.zip
-        retention-days: 7
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create release
+        run: |
+          ./release.sh release
+      - uses: actions/upload-artifact@v3
+        with:
+          name: artifacts
+          path: |
+            llvm-mingw-release-msvcrt-ubuntu-18.04-x86_64.tar.xz
+            llvm-mingw-release-msvcrt-i686.zip
+            llvm-mingw-release-msvcrt-x86_64.zip
+          retention-days: 7
 
   # For scheduled builds, get the commit ids of the latest versions to build.
   #
